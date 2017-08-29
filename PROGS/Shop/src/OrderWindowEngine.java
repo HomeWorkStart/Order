@@ -2,14 +2,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class OrderWindowEngine extends OrderWindow implements ActionListener {
+public class OrderWindowEngine implements ActionListener {
 	OrderWindow parent;
 
-	@Override
+	//constructor
+	OrderWindowEngine(){
+		this.parent = parent;
+	}
+	//@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		list.setSelectedIndex(4);
-		list.addActionListener((ActionListener) this);
+		
 	}
 
 }
