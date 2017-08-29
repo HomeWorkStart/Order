@@ -27,8 +27,7 @@ public class OrderWindow implements ActionListener{
 		//p1.add(model);
 		p1.add(number_count);
 		p1.add(quantity);
-		p1.add(list);
-		
+			
 		mainframe.setContentPane(p1);
 		//Устанавливаем размер окна, так чтобы уместились
 		//все компоненты
@@ -36,8 +35,6 @@ public class OrderWindow implements ActionListener{
 		//Показываем окно
 		mainframe.setVisible(true);
 		
-		list.setSelectedIndex(5);
-		list.addActionListener(this);
 		}
 /*
 	void actionPerformed(ActionEvent e){
