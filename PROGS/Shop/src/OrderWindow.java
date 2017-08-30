@@ -7,12 +7,12 @@ public class OrderWindow implements ActionListener{
 //creating window components
 	JButton button_order=new JButton("–азместить заказ");
 	JLabel namemodel = new JLabel("¬ведите модель");
-	JTextField model = new JTextField();
 	JLabel number_count = new JLabel("¬ведите количество велосипедов");
 	JTextField quantity = new JTextField();
 	JFrame mainframe = new JFrame("«аказ велосипедов");
 	String[] bikes = {" ","type1","type2","type3","type4"};
-	JComboBox list = new JComboBox(bikes);
+	JComboBox<Object> list;
+	
 	JPanel p1 = new JPanel();
 //////////////////////////////////////////////////////////////////////////////	
 	//  онструктор
@@ -24,7 +24,6 @@ public class OrderWindow implements ActionListener{
 		p1.add(button_order);
 		p1.add(namemodel);
 		p1.add(list);
-		//p1.add(model);
 		p1.add(number_count);
 		p1.add(quantity);
 			
@@ -35,28 +34,15 @@ public class OrderWindow implements ActionListener{
 		//ѕоказываем окно
 		mainframe.setVisible(true);
 		
+		list = new JComboBox<Object>(bikes);
+		
+		//adding action listener
+		OrderWindowEngine order = new OrderWindowEngine();
+		button_order.addActionListener(order);
+		list.addActionListener(order);
+		quantity.addActionListener(order);
 		}
-/*
-	void actionPerformed(ActionEvent e){
-		try{
-		bikeOrder.checkOrder("FireBird", quantity);
-		//следующа€ строка не выполн€етс€ в случае исключени€
-		txtFieldOrderConfirmation.setText(
-		"–азмещение вашего заказа завершено");
-		} catch(TooManyBikesException e){
-		txtFieldOrderConfirmation.setText(e.getMessage());
-		}
-		}
-		void checkOrder(String bikeModel, int quantity)
-		throws TooManyBikesException{
-			//Ќапишите код, который провер€ет, помещаетс€ ли требуемое
-			//количество велосипедов заданной модели в грузовик.
-			//≈сли не помещаетс€, сделать следующее:
-			throw new TooManyBikesException("Ќевозможно доставить"
-			+ quantity + " велосипедов модели " + bikeModel +
-			" за одну доставку" );
-			}
-*/			
+
 		public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		OrderWindow ord = new OrderWindow();
