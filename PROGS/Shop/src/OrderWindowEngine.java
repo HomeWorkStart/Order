@@ -1,56 +1,42 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+
 
 public class OrderWindowEngine implements ActionListener {
 	OrderWindow parent;
 
 	// constructor
-	OrderWindowEngine() {
+	OrderWindowEngine(OrderWindow parent) {
 		this.parent = parent;
 	}
 
-	// @Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		JButton clickedButton = (JButton) e.getSource();
-		String CountNumber = parent.quantity.getText();
-		String model = parent.list.getName();
-		String selectedmodel;
-		double displayValue = 0;
-
-		if (!"".equals(CountNumber)) {
-
-			try {
-				displayValue = Double.parseDouble(CountNumber);
-			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				javax.swing.JOptionPane.showConfirmDialog(null, "Пожалуйста, введите число", "Неправильный ввод",
-						javax.swing.JOptionPane.PLAIN_MESSAGE);
-				return;
-			}
-		}
-		Object src = e.getSource();
-		// Для каждой кнопки арифметического действия
-		// запомнить его: +, -, /, или *, сохранить текущее число
-		// в переменной currentResult, и очистить дисплей
-		// для ввода нового числа
+		String text_quantity;
+		int int_quantity;
 		
-		if (src == parent.quantity) {
-
-		}
-
-		if (src == parent.list.getName()) {
-			selectedmodel =
-		}
-		
-if (src == parent.button_order) {
-			
-			checkOrder
-		}
+		text_quantity=parent.quantity.getText();
+        
+            if (text_quantity!=""){
+                try {
+                	int_quantity = Integer.parseInt(text_quantity);
+                	javax.swing.JOptionPane.showConfirmDialog(null, "You ordered", "Order",
+    						javax.swing.JOptionPane.PLAIN_MESSAGE);	
+                } catch (NumberFormatException e1) {
+              //Will Throw exception!
+              //do something! anything to handle the exception.
+                	javax.swing.JOptionPane.showConfirmDialog(null, "Пожалуйста, введите число", "Неправильный ввод",
+    						javax.swing.JOptionPane.PLAIN_MESSAGE);	                            }
+            if  (parent.int_quantity>10){
+            	javax.swing.JOptionPane.showConfirmDialog(null, "You ordered too much", "Incorrect input",
+						javax.swing.JOptionPane.PLAIN_MESSAGE);	
+         
+            	}
+            }
+            
+	}
 		//// exceptions////
 	}
-
+/*
 	void checkOrder(String model, double displayValue) {
 
 		if ((!"".equals(model)) & (displayValue != 0)) {
@@ -63,5 +49,6 @@ if (src == parent.button_order) {
 			javax.swing.JOptionPane.showConfirmDialog(null, "Ваш заказ Не сформирован. Выберите количество",
 					"Статус заказа", javax.swing.JOptionPane.PLAIN_MESSAGE);
 		}
-	}
-}
+	} */
+
+

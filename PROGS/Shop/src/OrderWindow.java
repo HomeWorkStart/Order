@@ -1,17 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.lang.*;
+import java.awt.event.*;
 
-public class OrderWindow implements ActionListener{
+public class OrderWindow {
 //creating window components
 	JButton button_order=new JButton("Разместить заказ");
 	JLabel namemodel = new JLabel("Введите модель");
 	JLabel number_count = new JLabel("Введите количество велосипедов");
 	JTextField quantity = new JTextField();
 	JFrame mainframe = new JFrame("Заказ велосипедов");
-	String[] bikes = {" ","type1","type2","type3","type4"};
-	JComboBox<Object> list;
+	String[] bikes = {"type1","type2","type3","type4"};
+	JComboBox list = new JComboBox(bikes);
+	String text_quantity;
+	int int_quantity;
 	
 	JPanel p1 = new JPanel();
 //////////////////////////////////////////////////////////////////////////////	
@@ -34,20 +35,19 @@ public class OrderWindow implements ActionListener{
 		//Показываем окно
 		mainframe.setVisible(true);
 		
-		list = new JComboBox<Object>(bikes);
-		
-		//adding action listener
-		OrderWindowEngine order = new OrderWindowEngine();
+		OrderWindowEngine order = new OrderWindowEngine(this);
 		button_order.addActionListener(order);
-		list.addActionListener(order);
 		quantity.addActionListener(order);
 		}
 
 		public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		OrderWindow ord = new OrderWindow();
+			OrderWindow ord = new OrderWindow();
 	}
 
-	
 }
+
+
+	
+
 
