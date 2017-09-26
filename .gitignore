@@ -1,6 +1,9 @@
-.metadata
 # Eclipse
 .classpath
 .project
 .settings/
 .recommenders/
+.metadata/
+
+.patch
+.patchgit
