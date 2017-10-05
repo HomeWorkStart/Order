@@ -6,6 +6,8 @@ import javax.swing.filechooser.*;
 
 public class FileCopy implements ActionListener {
 
+	private static final Object PAGE_START = null;
+	private static final Object PAGE_END = null;
 	JLabel copyfrom,copyto;
 	JButton from, copy, to;
 	JPanel mainwindow, buttonpanel, copypanel;
@@ -20,7 +22,7 @@ public class FileCopy implements ActionListener {
 		from = new JButton("Browse");
 		copyto = new JLabel("Copy to:");
 		displayFieldTo = new JTextField(30);
-		to = new JButton("Browse");
+		to = new JButton("Copy");
 		copy = new JButton("Browse");
 		
 		//creating panels
@@ -34,7 +36,7 @@ public class FileCopy implements ActionListener {
 		mainwindow.setLayout(bl);
 		
 		buttonpanel = new JPanel();
-		gl = new GridLayout(2,2);
+		gl = new GridLayout(3,3);
 		buttonpanel.setLayout(gl);
 		buttonpanel.add(copyfrom);
 		buttonpanel.add(displayFieldFrom);
@@ -44,16 +46,20 @@ public class FileCopy implements ActionListener {
 		buttonpanel.add(copy);
 		
 		//copypanel = new JPanel();
-		//copypanel.add(to);
+		buttonpanel.add(to);
 		
-		mainwindow.add(buttonpanel);
+		mainwindow.add(buttonpanel,PAGE_START);
 		
-		BorderLayout layoutcp = new BorderLayout();
+		//BorderLayout layoutcp = new BorderLayout();
 		//copypanel.setLayout(layoutcp);
-		//copypanel.add(to);
-		//mainwindow.add(copypanel);
+		//mainwindow.add(copypanel,PAGE_END);
 		
 		mainframe.setContentPane(mainwindow);
+		//Устанавливаем размер окна, так чтобы уместились
+		//все компоненты
+		mainframe.pack();
+		//show window
+		mainframe.setVisible(true);
 			
 	}
 	
