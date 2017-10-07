@@ -3,18 +3,18 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+import java.nio.file.Files;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class FileCopy extends JPanel implements ActionListener {
 
-	private static final Object PAGE_START = null;
-	private static final Object PAGE_END = null;
 	JLabel copyfrom, copyto;
 	JButton from, copy, to;
 	JPanel mainwindow, buttonpanel, copypanel;
 	GridLayout gl;
 	JTextField displayFieldFrom, displayFieldTo;
 	JFrame mainframe;
-	JFileChooser fc;
+	JFileChooser fcfrom, fcto;
 
 	FileCopy() {
 
@@ -51,14 +51,10 @@ public class FileCopy extends JPanel implements ActionListener {
 		to.addActionListener(this);
 
 		// Create a file chooser
-		fc = new JFileChooser();
+		fcfrom = new JFileChooser();
+		fcto = new JFileChooser();
 
-		mainwindow.add(buttonpanel, PAGE_START);
-
-		// BorderLayout layoutcp = new BorderLayout();
-		// copypanel.setLayout(layoutcp);
-		// mainwindow.add(copypanel,PAGE_END);
-
+		mainwindow.add(buttonpanel);
 		mainframe.setContentPane(mainwindow);
 		// Устанавливаем размер окна, так чтобы уместились
 		// все компоненты
@@ -70,52 +66,51 @@ public class FileCopy extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Handle copy button action.
+		// Handle buttons
 
 		if (e.getSource() == from) {
-			int returnVal = fc.showOpenDialog(FileCopy.this);
+			int returnVal = fcfrom.showOpenDialog(FileCopy.this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File file = fc.getSelectedFile();
+				File file1 = fcfrom.getSelectedFile();
 				// This is where a real application would open the file.
-				displayFieldFrom.setText(file.getName());
+				displayFieldFrom.setText(file1.getName());
 			} else {
 				displayFieldFrom.setText("Open command cancelled by user.");
 			}
 			displayFieldFrom.setCaretPosition(displayFieldFrom.getDocument().getLength());
 
 		} else if (e.getSource() == copy) {
-			int returnVal2 = fc.showOpenDialog(FileCopy.this);
+			int returnVal2 = fcto.showOpenDialog(FileCopy.this);
 
 			if (returnVal2 == JFileChooser.APPROVE_OPTION) {
-				File file = fc.getSelectedFile();
+				File file2 = fcto.getSelectedFile();
 				// This is where a real application would open the file.
-				displayFieldTo.setText(file.getName());
+				displayFieldTo.setText(file2.getName());
 			} else {
 				displayFieldTo.setText("Open command cancelled by user.");
 			}
 			displayFieldTo.setCaretPosition(displayFieldTo.getDocument().getLength());
 
 		}
-		
-		else if (e.getSource() == to) {
-			int returnVal3 = fc.showOpenDialog(FileCopy.this);
 
-			if (returnVal3 == JFileChooser.APPROVE_OPTION) {
-				File file = fc.getSelectedFile();
-				// This is where a real application would open the file.
-				displayFieldTo.setText(file.getName());
-			} else {
-				displayFieldTo.setText("Open command cancelled by user.");
+		else if (e.getSource() == to) {
+			File source = fcfrom.getSelectedFile();
+			File dest = fcto.getSelectedFile();
+
+			try {
+				Files.copy(source.toPath(), dest.toPath(), REPLACE_EXISTING);
+				System.out.println("File copied successfully!");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			displayFieldTo.setCaretPosition(displayFieldTo.getDocument().getLength());
 
 		}
 
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		FileCopy fc = new FileCopy();
 	}
