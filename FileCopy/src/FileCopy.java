@@ -97,18 +97,49 @@ public class FileCopy extends JPanel implements ActionListener {
 		else if (e.getSource() == to) {
 			File source = fcfrom.getSelectedFile();
 			File dest = fcto.getSelectedFile();
-
+			FileWriter myFile = null;
+			BufferedWriter buff = null;
+			FileReader sourcereader = null;
 			try {
-				Files.copy(source.toPath(), dest.toPath(), REPLACE_EXISTING);
+				sourcereader = new FileReader(source);
+			} catch (FileNotFoundException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			BufferedReader buffreader = new BufferedReader(sourcereader);
+			try {
+				myFile = new FileWriter(dest,true);
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			buff = new BufferedWriter(myFile);
+			
+			try {
+				while (true) {
+					String line = buffreader.readLine();
+					if (line == null) break;
+					buff.newLine();
+					buff.write(line);
+					
 				System.out.println("File copied successfully!");
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			} finally {
+				try {
+					buffreader.close();
+					buff.close();
+				} catch(IOException e1){
+					e1.printStackTrace();
+				}
+				}
 			}
 
 		}
 
-	}
+	
 
 	public static void main(String[] args) {
 
