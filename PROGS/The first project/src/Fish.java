@@ -1,6 +1,14 @@
+import java.io.OutputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Fish extends Pet {
 	int currentDepth=0;
+	Fish(int currentDepth){
+		int deep = currentDepth;
+		};
 	public int dive(int howDeep){
 		currentDepth=currentDepth + howDeep;
 		if (currentDepth > 100){
