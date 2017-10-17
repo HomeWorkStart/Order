@@ -8,7 +8,8 @@ public class FishMaster {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		Fish myFish = new Fish(20);
+		Fish myFish = new Fish();
+		System.out.println("Deep is " + myFish.currentDepth);
 		String feetstring = " ";
 		int feet;
 		// Создаем обработчик чтения входного потока InputStreamReader,

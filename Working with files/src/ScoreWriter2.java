@@ -32,12 +32,12 @@ public class ScoreWriter2 {
 		scores[2].setScore(190);
 		scores[2].setPlayDate(today);
 		try {
-			myFile = new FileWriter("c:\\Users\\mboris\\Documents\\my scores2.txt");
+			myFile = new FileWriter("c:\\Users\\mboris\\Documents\\scores2.txt");
 			buff = new BufferedWriter(myFile);
 			for (int i = 0; i < scores.length; i++) {
 				// Преобразует каждый счет в объект String
 				// и записывает его в scores2.txt
-				buff.write(scores[i].toString());
+				buff.write(scores[i].getLastName());
 				System.out.println("Запись " + scores[i].getLastName());
 			}
 			System.out.println("Запись файла завершена");
