@@ -28,11 +28,11 @@ public class HashMapDemo {
 	         System.out.println(mentry.getValue());
 	      }
 	      /* Get values based on key*/
-	      String var= hmap.get(2);
+	      String var= hmap.get(22976);
 	      System.out.println("Value at index 2 is: "+var);
 
 	      /* Remove values based on key*/
-	      hmap.remove(3);
+	      hmap.remove(2218267);
 	      System.out.println("Map key and values after removal:");
 	      Set set2 = hmap.entrySet();
 	      Iterator iterator2 = set2.iterator();
